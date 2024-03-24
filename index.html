@@ -1,0 +1,1903 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<title>Emergent Evolutionary Dynamics in Multiagent Systems</title>
+<meta name="author" content="Reilly Raab"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+.underline { text-decoration: underline; }
+</style>
+<link rel="stylesheet" href="./reveal.js/dist/reveal.css"/>
+
+<link rel="stylesheet" href="./reveal.js/dist/theme/custom.css" id="theme"/>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
+<link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
+<link rel="stylesheet" type="text/css" href="/css/fonts.css">
+<link rel="stylesheet" type="text/css" href="/css/custom.css">
+<link rel="stylesheet" type="text/css" href="/css/lib/katex.min.css">
+<script src="/js/main.js"></script>
+<script src="/js/lib/copy-tex.js"></script>
+</head>
+<body>
+<div class="reveal">
+<div class="slides">
+<section id="sec-title-slide"><h1><center>Emergent<br/> Evolutionary Dynamics <br/>in<br/> Multiagent Systems</center></h1>
+<br/><br/>Reilly Raab<br/>March 27, 2024
+</section>
+<script type="text/javascript">
+    MathJax.Hub.Config({
+      showMathMenu: false,
+      "HTML-CSS": {
+        scale: 190,
+      },
+      TeX: {
+        extensions: ["AMSmath.js", "AMSsymbols.js", "autoload-all.js", "color.js"],
+        Macros: {
+          subto: "{\\rm subject~to~}",
+          argmin: ["\\underset{#1}{\\rm argmin}~~", 1],
+          E: ["\\underset{#1}{\\rm E}", 1],
+          define: "\\mathrel{\\vcenter{:}}=",
+          alert: ["{\\class{alert}{#1}}", 1]
+        }
+      }
+    });
+</script>
+<style type="text/css">
+    /* layout */
+
+    div.columns {
+      display: flex;
+    }
+    div.column {
+      text-align: left;
+    }
+    div.center,
+    div.center > p,
+    div.center > em {
+      text-align: center !important;
+    }
+
+    .alert {
+      color: #ff0000;
+    }
+</style>
+<section>
+<section id="slide-org6fc9045">
+<h2 id="About-Reilly"><span class="section-number-2">1.</span> About Reilly</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+
+<div id="orgbb0fa8d" class="figure">
+<p><img src="./img/reilly.png" alt="reilly.png" width="50%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<br/>
+<br/>
+<p>
+PhD (just last week!)
+ <br/> 
+in Computer Science and Engineering
+ <br/> 
+at UC Santa Cruz
+ <br/> 
+</p>
+</div>
+</div>
+<br/>
+<table><tr><td>
+<p>
+<strong>Dissertation:</strong>
+</p>
+</td><td>
+<p>
+<em>Machine Learning and the Multiagent Alignment Problem</em>.
+</p>
+</td></tr><tr><td>
+<p>
+<strong>Background:</strong>
+</p>
+</td><td>
+<ul>
+<li>BSc, Physics, UCSB (College of Creative Studies).
+<ul>
+<li>Thesis supporting control of superconducting qubits.</li>
+
+</ul></li>
+<li>Prior work in software development.</li>
+
+</ul>
+</td></tr></table>
+</section>
+</section>
+<section>
+<section id="slide-orgac864cf">
+<h2 id="Dissertation-Work"><span class="section-number-2">2.</span> Dissertation Work</h2>
+<p>
+Dynamics of multiagent systems. Bias and fairness in machine learning.
+</p>
+<ul>
+<li>Socially consequential, data-driven policy.</li>
+<li>Population of affected individuals.</li>
+<li>Account for <em>dynamical feedback</em>.</li>
+
+</ul>
+
+<div id="orgd01332f" class="figure">
+<p><img src="./img/dissertationfeedback.jpg" alt="dissertationfeedback.jpg" width="75%" />
+</p>
+</div>
+
+<div class="center">
+<p>
+How can we intervene on policy to ensure &ldquo;aligned&rdquo; outcomes?
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org91140c7">
+<h2 id="Dissertation-Related-Publications"><span class="section-number-2">3.</span> Dissertation-Related Publications</h2>
+<aside class="notes">
+Theory, Experiment -> problematic outcomes
+
+Papers explore different solutions.
+
+Highlight Conferences.
+
+Met Luis at AAI.
+</aside>
+
+<p>
+ <div style="font-size: 80%;"> 
+[1] <strong>Reilly Raab</strong> and Yang Liu.
+ <br/> 
+<em>Unintended selection: Persistent qualification rate disparities and interventions.</em>
+ <br/> 
+<strong><span class="underline">NeurIPS</span></strong>, volume 34, 2021. (<strong><span class="underline">Spotlight paper award</span></strong>)
+</p>
+
+<p>
+[2] Yatong Chen\({}^\dagger\), <strong>Reilly Raab\({}^\dagger\)</strong>, Jialu Wang, and Yang Liu.
+ <br/> 
+<em>Fairness transferability subject to bounded distribution shift.</em>
+ <br/> 
+<strong><span class="underline">NeurIPS</span></strong>, volume 35, 2022.
+</p>
+
+<p>
+[3] Tongxin Yin\({}^\dagger\), <strong>Reilly Raab\({}^\dagger\)</strong>, Mingyan Liu, and Yang Liu.
+ <br/> 
+<em>Long-term fairness with unknown dynamics.</em>
+ <br/> 
+<strong><span class="underline">NeurIPS</span></strong>, volume 36, 2023.
+</p>
+
+<p>
+[4] <strong>Reilly Raab</strong>, Ross Boczar, Maryam Fazel, and Yang Liu.
+ <br/> 
+<em>Fair participation via sequential policies.</em>
+ <br/> 
+<strong><span class="underline">AAAI</span></strong>, volume 38, 2024.
+</p>
+
+<p>
+\(\dagger\) Equal contribution
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgbf9903d">
+<h2 id="This-Talk"><span class="section-number-2">4.</span> This Talk</h2>
+<p>
+Connections between evolution and learning.
+</p>
+
+<p>
+A fundamental mathematical relationship.
+</p>
+
+<p>
+A model of emergent social norms informed by features.
+</p>
+
+<p>
+Reinterpretation of multiagent dynamics.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org7779fc9">
+<h2 id="Overview"><span class="section-number-2">5.</span> Overview</h2>
+<ol>
+<li><strong>Conjugate Natural Selection</strong>.
+<ul>
+<li>Evolutionary Dynamics.</li>
+<li>Learning Dynamics.</li>
+<li>Main Result.</li>
+
+</ul></li>
+<li><strong>A Model for the Self-Organization of Social Roles</strong>.
+<ul>
+<li>The Model</li>
+<li>Simulation Results.</li>
+<li>Theoretical Results.</li>
+
+</ul></li>
+<li><strong>Emergent Evolutionary Dynamics</strong>.
+<ul>
+<li>Beyond Traditional Replicators.</li>
+<li>Reinterpreting Multiagent Dynamics.</li>
+
+</ul></li>
+
+</ol>
+</section>
+</section>
+<section>
+<section id="slide-orgae3f9e9">
+<h2 id="Related-Publications"><span class="section-number-2">6.</span> Related Publications</h2>
+<p>
+[5] <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu.
+ <br/> 
+<em>Conjugate Natural Selection</em>.
+ <br/> 
+<strong>preprint (arXiv)</strong>, 2022.
+</p>
+
+<p>
+[6] <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu.
+ <br/> 
+<em>A Model for the Self-Organization of Social Roles</em>.
+ <br/> 
+<strong>preprint</strong>, 2024.
+</p>
+
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>1. Conjugate Natural Selection</center></h1>
+
+<p>
+[5] <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu.
+ <br/> 
+<em>Conjugate Natural Selection</em>.
+ <br/> 
+<strong>preprint (arXiv)</strong>, 2022.
+</p>
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">1. Conjugate Natural Selection</span></center></h1>
+<h2><ul><li style="color:black; margin:0em;">Evolutionary Dynamics</li><li style="color:lightgray; margin:0em;">Learning Dynamics</li><li style="color:lightgray; margin:0em;">Main Result</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-orged74aad">
+<h2 id="Evolution-Mechanisms"><span class="section-number-2">7.</span> Evolution: Mechanisms</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<ol>
+<li>Heritability.
+<ul>
+<li><em>Strategies</em> can <em>replicate</em>.</li>
+
+</ul></li>
+<li>Variation.
+<ul>
+<li>Replication is <em>imperfect</em>.</li>
+
+</ul></li>
+<li>Reproductive advantages.
+<ul>
+<li>Strategies are <em>selected</em>.</li>
+
+</ul></li>
+
+</ol>
+</div>
+<div class="column" style="flex:  1 0;">
+
+<div id="org0a276e9" class="figure">
+<p><img src="./img/feedback.jpg" alt="feedback.jpg" width="100%" />
+</p>
+</div>
+</div>
+</div>
+<br/>
+<div class="columns" style="align-items: 3;">
+<div class="column" style="flex:  1 0;">
+<span>A duplicating DNA strand.</span>
+
+
+<div id="orgdbff531" class="figure">
+<p><img src="./img/dna.jpg" alt="dna.jpg" width="100%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<span>A game strategy.</span>
+
+
+<div id="org1ecbf25" class="figure">
+<p><img src="./img/gambit.jpg" alt="gambit.jpg" width="60%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<span>A hand-copied manuscript.</span>
+
+
+<div id="org9010567" class="figure">
+<p><img src="./img/monk.jpg" alt="monk.jpg" width="75%" />
+</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org6b36e26">
+<h2 id="Evolution-Dynamics"><span class="section-number-2">8.</span> Evolution: Dynamics</h2>
+<div class="center">
+<p>
+Evolution describes how <em>distributions</em> change.
+</p>
+</div>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<span>Individuals are <em>artifacts</em> of evolution.</span>
+
+
+<div id="orgc61ce39" class="figure">
+<p><img src="./img/skeletons.jpg" alt="skeletons.jpg" width="100%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<span>Populations evolve. Niches co-evolve.</span>
+
+
+<div id="org1ea9076" class="figure">
+<p><img src="./img/tree.jpg" alt="tree.jpg" width="45%" />
+</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org416806d">
+<h2 id="The-Replicator-Equation"><span class="section-number-2">9.</span> The Replicator Equation</h2>
+<p>
+Consider the distribution over all possible strategies \(h\).
+</p>
+<div>
+\begin{equation}
+\rho(h).
+\end{equation}
+
+</div>
+
+<p>
+Interpret &ldquo;fitness&rdquo; as exponential growth rate (no mutation).
+</p>
+
+<div>
+\begin{equation}
+- \mathscr{L}_{\rho}(h) = \frac{\dot{N}_{h}}{N_{h}} = \frac{\rm d}{{\rm d} t} \log N_{h}.
+\end{equation}
+
+</div>
+
+<p>
+After re-normalization,
+</p>
+
+<div>
+\begin{equation}
+\dot{\rho}(h) = \rho(h) \Big[ \overline{\mathscr{L}_{\rho}} - \mathscr{L}_{\rho}(h) \Big]. \qquad \overline{\mathscr{L}_{\rho}} = \sum_{h} \rho(h) \mathscr{L}_{\rho}(h).
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org41f4470">
+<h2 id="Evolutionary-Game-Theory"><span class="section-number-2">10.</span> Evolutionary Game Theory</h2>
+<table><tr><td>
+<p>
+Hawk-Dove (Game of Chicken).
+</p>
+<div>
+\begin{align}
+\mathscr{L}(k) &= 2 \rho(k) - \rho(v).\\
+\mathscr{L}(v) &= \phantom{2}\rho(k).
+\end{align}
+
+</div>
+</td><td>
+<p>
+Prisoner&rsquo;s Dilemma.
+</p>
+<div>
+\begin{align}
+\mathscr{L}(d) &= \phantom{2}\rho(d) - \rho(c).\\
+\mathscr{L}(c) &= 2\rho(d).
+\end{align}
+
+</div>
+</td><td>
+<p>
+Rock-Paper-Scissors.
+</p>
+<div>
+\begin{align}
+\mathscr{L}(r) &= \rho(p) - \rho(s).\\
+\mathscr{L}(p) &= \rho(s) - \rho(r). \\
+\mathscr{L}(s) &= \rho(r) - \rho(p).
+\end{align}
+
+</div>
+</td></tr><tr><td>
+<p>
+Stable equilibrium at
+</p>
+<div>
+\begin{equation}
+\begin{bmatrix}\rho(k) \\ \rho(v)\end{bmatrix} = \begin{bmatrix}1\\ 1\end{bmatrix}.
+\end{equation}
+
+</div>
+</td><td>
+<p>
+Stable equilibrium at
+</p>
+<div>
+\begin{equation}
+\begin{bmatrix}\rho(d) \\ \rho(c)\end{bmatrix} = \begin{bmatrix}1 \\ 0\end{bmatrix}.
+\end{equation}
+
+</div>
+</td><td>
+<p>
+Cyclic dynamics centered at
+</p>
+<div>
+\begin{equation}
+\begin{bmatrix}\rho(r) \\ \rho(p) \\ \rho(s) \end{bmatrix} = \begin{bmatrix}1/3 \\ 1/3 \\ 1/3 \end{bmatrix}.
+\end{equation}
+
+</div>
+</td></tr></table>
+<p>
+[Friedman and Sinervo (2016)].
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orge30a413">
+<h2 id="Bayesian-Inference-as-Natural-Selection"><span class="section-number-2">11.</span> Bayesian Inference as Natural Selection</h2>
+<p>
+Interpret \(\rho(h)\) as distribution over hypotheses \(h\), loss as <em>surprisal</em>.
+</p>
+
+<div>
+\begin{equation}
+\mathscr{L}(h) = -\log \Pr(x \mid h).
+\end{equation}
+
+</div>
+<br/>
+<table><tr><td>
+<p>
+Discretized Replicator Equation:
+</p>
+<div>
+\begin{equation}
+\rho^{t+1}(h) = \rho^{t}(h) \frac{\exp[-\mathscr{L}_{\rho^{t}}(h)]}{\overline {\exp[-\mathscr{L}_{\rho^{t}}]}}.
+\end{equation}
+
+</div>
+</td><td>
+<p>
+Bayes&rsquo; Theorem:
+</p>
+<div>
+\begin{equation}
+P(h \mid x) = P(h) \frac{\displaystyle P(x \mid h) }{\displaystyle P(x)}.
+\end{equation}
+
+</div>
+</td></tr></table>
+<div class="center">
+<p>
+<em>\(\Pr(x \mid h)\) consistent with &ldquo;probability of survival&rdquo; for \(h\) in state \(x\).</em>
+</p>
+</div>
+<p>
+(<strong>Thms 3, 4</strong>): Novel generalizations of these results.
+</p>
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">1. Conjugate Natural Selection</span></center></h1>
+<h2><ul><li style="color:lightgray; margin:0em;">Evolutionary Dynamics</li><li style="color:black; margin:0em;">Learning Dynamics</li><li style="color:lightgray; margin:0em;">Main Result</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-orgbb51023">
+<h2 id="Learning"><span class="section-number-2">12.</span> Learning</h2>
+<div class="center">
+<p>
+Minimize loss \(\mathcal{L}\) for a function \(f\) parameterized by \(\boldsymbol{\theta}\).
+</p>
+</div>
+
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<br/>
+<br/>
+
+<div id="org2339a8b" class="figure">
+<p><img src="./img/learning.jpg" alt="learning.jpg" width="100%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<ul>
+<li>Supervised Learning</li>
+
+</ul>
+<div>
+\begin{equation}
+f_{\boldsymbol{\theta}}(X) \mapsto Y.
+\end{equation}
+
+</div>
+
+<ul>
+<li>Unsupervised Learning</li>
+
+</ul>
+<div>
+\begin{equation}
+f_{\boldsymbol{\theta}}(X) \mapsto \Pr(X).
+\end{equation}
+
+</div>
+
+<ul>
+<li>Reinforcement Learning</li>
+
+</ul>
+<div>
+\begin{equation}
+f_{\boldsymbol{\theta}}(S) \mapsto \Pr(A).
+\end{equation}
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org00a4fd5">
+<h2 id="Gradient-Descent"><span class="section-number-2">13.</span> Gradient Descent</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+ML&rsquo;s work-horse algorithm:
+</p>
+<div>
+\begin{equation}
+\dot{\theta}^{i} = - \eta \partial_{i} \mathcal{L}(\boldsymbol{\theta}).
+\end{equation}
+
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+
+<video data-autoplay width="50%" autoplay loop muted>
+  <source src="./img/gradient.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</div>
+</div>
+<p>
+<strong>Problem:</strong>
+</p>
+
+<p>
+Dynamics vary with change of basis for \(\boldsymbol{\theta}\)!
+</p>
+<div>
+\begin{equation}
+[\theta^{i}] = \mathsf{U}.
+\qquad
+[\partial_{i} \mathcal{L}(\boldsymbol{\theta})] = \frac{\mathsf{L}}{\mathsf{U}}.
+\qquad
+[\eta] = \frac{\mathsf{U}^{2}}{\mathsf{L}}.
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga61c6ca">
+<h2 id="Iterative-Refinement"><span class="section-number-2">14.</span> Iterative Refinement</h2>
+<div>
+\begin{equation}
+\dot{\boldsymbol{\theta}} = \underset{\mathbf{u}}{\rm argmin} \bigg[ \mathcal{L}(\boldsymbol{\theta}) + \sum_{i} u^{i} \partial_{i} \mathcal{L}(\boldsymbol{\theta}) + {\rm D}(\mathbf{u}) \bigg].
+\end{equation}
+
+</div>
+<p>
+When \({\rm D}\) is Euclidean,
+</p>
+<div>
+\begin{equation}
+{\rm D}(\mathbf{u}) = \frac{1}{2 \eta} \sum_{i,j} u^{i} \delta_{ij} u^{j}.
+\end{equation}
+
+</div>
+<br/>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+Solve for minimum:
+</p>
+<div>
+\begin{equation}
+\partial_{i} \mathcal{L}(\boldsymbol{\theta}) + \frac{1}{\eta} \sum_{j} \delta_{ij} u^{j} = 0.
+\end{equation}
+
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+Vanilla gradient descent.
+</p>
+<div>
+\begin{equation}
+\dot{\theta}^{i} = - \eta \sum_{j} \delta^{ij} \partial_{j} \mathcal{L}(\boldsymbol{\theta}).
+\end{equation}
+
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org4d110de">
+<h2 id="Alternative-Metrics-boldsymbol-rm-D-"><span class="section-number-2">15.</span> Alternative Metrics \({\boldsymbol{\rm D}}\)</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+Metric can depend on:
+</p>
+<ol>
+<li>The parameters \(\boldsymbol{\theta}\).
+<ul>
+<li>Euclidean, Mahalanobis.</li>
+
+</ul></li>
+<li>Previous updates.
+<ul>
+<li>Momentum, Nesterov acceleration.</li>
+
+</ul></li>
+<li>\(\colorbox{#ddd}{$\text{The function } f_{\boldsymbol{\theta}} \colon \mathcal{X} \to \mathcal{Y}$}\).
+<ul>
+<li><em>Natural</em> or <em>covariant gradient</em>.</li>
+<li>Independent of parameterization.</li>
+<li>\(\colorbox{#ddd}{$\text{Probability distributions } \rho_{\boldsymbol{\theta}} \text{ over } \mathcal{H}$}\).</li>
+
+</ul></li>
+
+</ol>
+</div>
+<div class="column" style="flex:  1 0;">
+
+<div id="org76a3511" class="figure">
+<p><img src="./img/sushi.jpg" alt="sushi.jpg" width="100%" />
+</p>
+</div>
+<div class="center">
+<p>
+Many flavors to choose from.
+</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgfaa2596">
+<h2 id="The-Fisher-Rao-Metric"><span class="section-number-2">16.</span> The Fisher-Rao Metric</h2>
+<p>
+Parameterize probability distributions \(\rho_{\boldsymbol{\theta}}\) over \(\mathcal{H}\).
+</p>
+
+<p>
+Measure size of \(\dot{\boldsymbol{\theta}}\) by <em>marginal information</em> about \(\rho_{\boldsymbol{\theta}}\).
+</p>
+<br/>
+<div>
+\begin{equation}
+{\rm D}_{KL}\big( \rho_{(\boldsymbol{\theta} + \mathbf{u})} \parallel \rho_{\boldsymbol{\theta}} \big) = \frac{1}{2} \sum_{i,j} u^{i} F_{ij}(\boldsymbol{\theta}) u^{j} + \mathcal{O}(|\mathbf{u}|^{3})
+\end{equation}
+
+</div>
+<div>
+\begin{equation}
+F_{ij}(\boldsymbol{\theta})
+= \frac{\partial^{2}}{\partial u^{i} \partial u^{j}} {\rm D}_{KL}\big( \rho_{(\boldsymbol{\theta} + \mathbf{u})} \parallel \rho_{\boldsymbol{\theta}} \big)
+= \underset{H \sim \rho_{\boldsymbol{\theta}}}{\rm Cov} \Big[ \partial_{i} \log \rho_{\boldsymbol{\theta}}(H), \partial_{j} \log \rho_{\boldsymbol{\theta}}(H)\Big].
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgd19a247">
+<h2 id="Natural-Gradient-Descent"><span class="section-number-2">17.</span> Natural Gradient Descent</h2>
+<div>
+\begin{equation}
+\dot{\boldsymbol{\theta}} = \underset{\mathbf{u}}{\rm argmin} \bigg[ \mathcal{L}(\boldsymbol{\theta}) + \sum_{i} u^{i} \partial_{i} \mathcal{L}(\boldsymbol{\theta}) + {\rm D}(\mathbf{u}) \bigg].
+\end{equation}
+
+</div>
+<table><tr><td>
+<p>
+Euclidean Metric \(\qquad \implies\)
+</p>
+</td><td>
+<p>
+Vanilla gradient descent.
+</p>
+</td></tr><tr><td>
+<div>
+\begin{equation}
+{\rm D}(\mathbf{u}) = \frac{1}{2} \sum_{i,j} u^{i} \delta_{ij} u^{j}.
+\end{equation}
+
+</div>
+</td><td>
+<div>
+\begin{equation}
+\dot{\theta}^{i} = - \sum_{j} \delta^{ij} \partial_{j} \mathcal{L}(\boldsymbol{\theta}).
+\end{equation}
+
+</div>
+</td></tr><tr><td>
+<p>
+Fisher Divergence \(\qquad \implies\)
+</p>
+</td><td>
+<p>
+Fisher-Rao natural gradient descent (FR-NGD).
+</p>
+</td></tr><tr><td>
+<div>
+\begin{equation}
+{\rm D}(\mathbf{u}) = \frac{1}{2} \sum_{i,j} u^{i} F_{ij}(\boldsymbol{\theta}) u^{j}.
+\end{equation}
+
+</div>
+</td><td>
+<div>
+\begin{equation}
+\dot{\theta}^{i} = - \sum_{j} \big[ F(\boldsymbol{\theta})^{\dagger} \big]^{ij} \partial_{j} \mathcal{L}(\boldsymbol{\theta}).
+\end{equation}
+
+</div>
+</td></tr></table>
+
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">1. Conjugate Natural Selection</span></center></h1>
+<h2><ul><li style="color:lightgray; margin:0em;">Evolutionary Dynamics</li><li style="color:lightgray; margin:0em;">Learning Dynamics</li><li style="color:black; margin:0em;">Main Result</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-org43118cf">
+<h2 id="Evolution-vs-Learning"><span class="section-number-2">18.</span> Evolution vs Learning</h2>
+<br/>
+<br/>
+<br/>
+<div class="center">
+<p>
+Evolution corresponds to learning at the <em>population</em> level.
+</p>
+
+<p>
+Its dynamics can be optimally approximated with FR-NGD.
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org776eecf">
+<h2 id="Main-Result"><span class="section-number-2">19.</span> Main Result</h2>
+<div class="center">
+<p>
+<strong>Thm 1</strong>: \(\quad\) <em>FR-NGD of Population Loss Optimally Approximates Replicator Dynamics</em>.
+</p>
+</div>
+
+<table><tr><td>
+<p>
+Replicator Dynamics:
+</p>
+<div>
+\begin{equation}
+\dot{\rho}^{\star}(h) = \rho(h) \Big[ \overline{\mathscr{L}_{\rho}} - \mathscr{L}_{\rho}(h) \Big].
+\end{equation}
+
+</div>
+</td><td>
+<p>
+Fisher-Rao Natural Gradient Descent of \(\mathcal{L}(\boldsymbol{\theta}) = \overline{\mathscr{L}_{\rho_{\boldsymbol{\theta}}}}\):
+</p>
+<div>
+\begin{align}
+\dot{\theta}^{i} &= - \sum_{j} \big[ F(\boldsymbol{\theta})^{\dagger} \big]^{ij} \partial_{j} \mathcal{L}(\boldsymbol{\theta}). \\[0.5em]
+\dot{\rho}_{\boldsymbol{\theta}}(h) &= \sum_{i} \frac{\partial \rho_{\boldsymbol{\theta}}(h)}{\partial \theta^{i}} \dot{\theta}^{i}.
+\end{align}
+
+</div>
+</td></tr></table>
+<span>FR-NGD minimizes Fisher divergence from replicator dynamics.</span>
+
+<div>
+\begin{equation}
+\dot{\boldsymbol{\theta}} = {\rm argmin}\quad
+\frac{1}{2} \sum_{h, k} \Big(\dot{\rho}_{\boldsymbol{\theta}}(h) - \dot{\rho}^{\star}(h)\Big) F[\rho](h, k) \Big(\dot{\rho}_{\boldsymbol{\theta}}(k) - \dot{\rho}^{\star}(k)\Big).
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org0c5c3fc">
+<h2 id="Intuition-Rome-to-Chicago"><span class="section-number-2">20.</span> Intuition: Rome to Chicago</h2>
+
+<div id="org5ff8b44" class="figure">
+<p><img src="./img/earth.jpg" alt="earth.jpg" width="100%" />
+</p>
+</div>
+
+<p>
+Gradient descent is to a Mercator map as FR-NGD is to a globe.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org7982ae2">
+<h2 id="As-Least-Squares"><span class="section-number-2">21.</span> As Least-Squares</h2>
+<div>
+\begin{equation}
+\sum_{j} F_{ij}(\boldsymbol{\theta}) \dot{\theta}^{j} = - \partial_{i} \overline{\mathscr{L}_{\rho_{\boldsymbol{\theta}}}}.
+\end{equation}
+
+</div>
+<p>
+Normal equation of a least-squares problem, \(\sum_{h,j} A^{ih} A_{hj} x^{j} = \sum_{h} A^{ih} b_{h}\):
+</p>
+<div>
+\begin{equation}
+\sum_{h,j} \Big[ \partial_{i} \log \rho_{\boldsymbol{\theta}}(h)\Big] \rho_{\boldsymbol{\theta}}(h) \Big[ \partial_{j} \log \rho_{\boldsymbol{\theta}}(h)\Big] \dot{\theta}^{j}
+= -\sum_{h} \Big[ \partial_{i} \log \rho_{\boldsymbol{\theta}}(h)\Big] \rho_{\boldsymbol{\theta}}(h) \mathscr{L}_{\rho_{\boldsymbol{\theta}}}(h).
+\end{equation}
+
+</div>
+<p>
+A projection of the replicator equation:
+</p>
+<div>
+\begin{equation}
+\sum_{h}  \Big[\partial_{i} \log \rho_{\boldsymbol{\theta}}(h)\Big] \dot{\rho}_{\boldsymbol{\theta}}(h)
+= \sum_{h} \Big[ \partial_{i} \log \rho_{\boldsymbol{\theta}}(h)\Big] \rho_{\boldsymbol{\theta}}(h) \Big(\overline{\mathscr{L}_{\rho_{\boldsymbol{\theta}}}} -  \mathscr{L}_{\rho_{\boldsymbol{\theta}}}(h) \Big).
+\end{equation}
+
+</div>
+
+<p>
+<strong>Thm 2</strong> of paper describes preserved dynamics.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org6f054ae">
+<h2 id="Applications"><span class="section-number-2">22.</span> Applications</h2>
+<div>
+\begin{equation}
+\mathscr{L}(h_{x}, h_{y}) = 20 + h_{x}^{2} + h_{y}^{2} - 10 \cos(2 \pi h_{x}) - 10 \cos(2 \pi h_{y}).
+\end{equation}
+
+</div>
+
+<table><tr><td>
+
+<div id="orgf85e9c4" class="figure">
+<p><img src="./img/rastrigin.jpg" alt="rastrigin.jpg" width="100%" />
+</p>
+</div>
+</td><td>
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/rastrigin.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<p>
+Sampled hypotheses, loss distribution over time.
+</p>
+</td></tr></table>
+</section>
+</section>
+<section>
+<section id="slide-org1d68408">
+<h2 id="Applications-Continued-"><span class="section-number-2">23.</span> Applications (Continued)</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+<strong>Pros</strong>
+</p>
+<ul>
+<li>Continuous, high-dimensional \(\mathcal{H}\).</li>
+<li>Highly non-convex \(\mathscr{L}(h)\).</li>
+<li>Projection as alternative to mutation.</li>
+<li>Analytic \(F^{\dagger}\) for exponential families.</li>
+
+</ul>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+<strong>Cons</strong>
+</p>
+<ul>
+<li>\(F^{\dagger}\) is \(\mathcal{O}^{\approx 2.37}(n)\), in general.</li>
+
+</ul>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org76d20aa">
+<h2 id="Conceptual-Implications"><span class="section-number-2">24.</span> Conceptual Implications</h2>
+<br/>
+<br/>
+<div class="center">
+<p>
+Evolution corresponds to learning at the <em>population</em> level.
+</p>
+
+<p>
+(Population of competing strategies).
+</p>
+
+<p>
+What about populations of learning individuals?
+</p>
+
+<p>
+(Multiagent Systems)
+</p>
+</div>
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>2. A Model for the Self-Organization <br/>of Social Roles</center></h1>
+
+<p>
+[6] <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu.
+ <br/> 
+<em>A Model for the Self-Organization of Social Roles</em>.
+ <br/> 
+<strong>preprint</strong>, 2024.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-orgb41253a">
+<h2 id="Social-Roles"><span class="section-number-2">25.</span> Social Roles</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+
+<p>
+Norms based on <em>observable features</em>.
+</p>
+
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<ul>
+<li>Gender.</li>
+<li>Race.</li>
+<li>Age.</li>
+
+</ul>
+</div>
+<div class="column" style="flex:  1 0;">
+<ul>
+<li>Mass.</li>
+<li>Maneuverability.</li>
+<li>Sensor accuracy.</li>
+
+</ul>
+</div>
+</div>
+<br/>
+
+<div id="org348b998" class="figure">
+<p><img src="./img/boat.jpg" alt="boat.jpg" width="75%" />
+</p>
+</div>
+<div class="center">
+<span>Boaters wave to other boaters.</span>
+
+</div>
+
+</div>
+<div class="column" style="flex:  1 0;">
+
+<div id="orga35f715" class="figure">
+<p><img src="./img/drone.jpg" alt="drone.jpg" width="100%" />
+</p>
+</div>
+<div class="center">
+<span>Larger drones maintain altitude or climb.</span>
+
+</div>
+</div>
+</div>
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">2. A Model for the Self-Organization <br/>of Social Roles</span></center></h1>
+<h2><ul><li style="color:black; margin:0em;">The Model</li><li style="color:lightgray; margin:0em;">Simulation Results</li><li style="color:lightgray; margin:0em;">Theoretical Results</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-orgc326c47">
+<h2 id="A-Game"><span class="section-number-2">26.</span> A Game</h2>
+<p>
+The <em>greeting</em> game.
+</p>
+
+<div id="org73db10d" class="figure">
+<p><img src="./img/partners.jpg" alt="partners.jpg" width="100%" />
+</p>
+</div>
+<br/>
+<span>Anti-symmetric version: The <em>door-holding</em> game.</span>
+</section>
+</section>
+<section>
+<section id="slide-org3395785">
+<h2 id="Repeated-Play"><span class="section-number-2">27.</span> Repeated Play</h2>
+<ul>
+<li>Real-valued features \(u, v\), additive noise \(\eta\).</li>
+
+<li>Binary actions \(\{0, 1\}\); zero-one loss.</li>
+
+<li>Interaction graph \(g(u, v)\).</li>
+
+</ul>
+
+<p>
+&ldquo;Social Learning&rdquo;\({}^{\ddagger}\)
+</p>
+<div class="center">
+<ul>
+<li>Interact with others.</li>
+<li>Apply norms for learned social role.</li>
+<li><em>Reinforce</em> corresponding roles for others.</li>
+<li>Needn&rsquo;t know your own features.</li>
+
+</ul>
+</div>
+
+<br/>
+<p>
+\({}^{\ddagger}\)[Sen and Airiau (2007); Mukherjee, Sen, and Airiau (2007)]
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org110937b">
+<h2 id="Stochastic-Annealing"><span class="section-number-2">28.</span> Stochastic Annealing</h2>
+<p>
+Define <em>increase in loss</em> for \(u\) observing \(v\) of <em>switching</em> policy:
+</p>
+<div>
+\begin{equation}
+S = {\rm E}\Big[\mathscr{L}_{v}(\text{opposite policy}) - \mathscr{L}_{v}(\text{same policy})\Big]. \quad (\text{want to minimize})
+\end{equation}
+
+</div>
+<p>
+<strong>Learning Rule:</strong>
+</p>
+
+<table><tr><td>
+<p>
+Switch to opposite policy
+</p>
+</td><td>
+<p>
+with probability
+</p>
+</td><td>
+</td></tr><tr><td>
+<div>
+\begin{equation}
+\pi(u, v) \leftarrow 1 - \pi(u, v),
+\end{equation}
+
+</div>
+</td><td>
+<div>
+\begin{equation}
+\frac{1}{2}\max\big[1, e^{-\beta S}\big].
+\end{equation}
+
+</div>
+</td><td>
+<div>
+\begin{equation}
+(\beta > 0)
+\end{equation}
+
+</div>
+</td></tr></table>
+</section>
+</section>
+<section>
+<section id="slide-orgab44f57">
+<h2 id="As-a-Spin-Glass-System"><span class="section-number-2">29.</span> As a Spin-Glass System</h2>
+<div class="center">
+<p>
+Spin-glass system with <em>non-local</em> interactions.
+</p>
+</div>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+
+<div id="org0d67eb4" class="figure">
+<p><img src="./img/spin-glass.jpg" alt="spin-glass.jpg" width="50%" />
+</p>
+</div>
+<div class="center">
+<p>
+Local coupling to neighbors (Ising).
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+
+<div id="orgcceb620" class="figure">
+<p><img src="./img/nonlocal.jpg" alt="nonlocal.jpg" width="65%" />
+</p>
+</div>
+<div class="center">
+<p>
+<em>Non-local</em> coupling in joint feature space (ours).
+</p>
+</div>
+</div>
+</div>
+
+
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">2. A Model for the Self-Organization <br/>of Social Roles</span></center></h1>
+<h2><ul><li style="color:lightgray; margin:0em;">The Model</li><li style="color:black; margin:0em;">Simulation Results</li><li style="color:lightgray; margin:0em;">Theoretical Results</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-orgb854b44">
+<h2 id="Simulation"><span class="section-number-2">30.</span> Simulation</h2>
+<table><tr><td>
+<div>
+\begin{align}
+\text{Yellow:} & \quad \pi(u, v) = 1\\
+\text{Blue:} & \quad \pi(u, v) = 0 \\
+\text{Brightness:} & \quad g(u,v)
+\end{align}
+
+</div>
+<br/>
+<p>
+Interpretations:
+</p>
+<ul>
+<li><p>
+Gender.
+</p>
+
+<p>
+feminine \(\leftrightarrow\) masculine
+</p></li>
+
+</ul>
+</td><td>
+
+<div id="org41073c6" class="figure">
+<p><img src="./img/v-axis.jpg" alt="v-axis.jpg" width="60%" style="margin: 0px;" />
+</p>
+</div>
+</td><td>
+
+<video data-autoplay width="55%" style="margin-top: 0.8em;" autoplay loop muted>
+  <source src="./img/0crop.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</td></tr><tr><td>
+</td><td>
+</td><td>
+
+<div id="org9536754" class="figure">
+<p><img src="./img/u-axis.jpg" alt="u-axis.jpg" width="60%" style="margin: 0px; margin-top: 0.75em;" />
+</p>
+</div>
+</td></tr></table>
+</section>
+</section>
+<section>
+<section id="slide-orgcbd519b">
+<h2 id="Implementation"><span class="section-number-2">31.</span> Implementation</h2>
+<p>
+Discretize feature space \(u \in [N]\). Represent \(\pi\) as \((N \times N)\) array. Update with GPU kernel.
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-python"   ><code trim><span style="color: #ECBE7B;">@taichi.data_oriented</span>
+<span style="color: #51afef;">class</span> <span style="color: #ECBE7B;">Model</span>:
+
+    <span style="color: #51afef;">self</span>.pi = taichi.field(<span style="color: #c678dd;">float</span>, shape=(N, N))
+
+    <span style="color: #ECBE7B;">@taichi.kernel</span>
+    <span style="color: #51afef;">def</span> <span style="color: #c678dd;">step_main_loop</span>():
+
+        <span style="color: #5B6268;"># </span><span style="color: #5B6268;">parallelized by jit compiler</span>
+        <span style="color: #51afef;">for</span> u, v <span style="color: #51afef;">in</span> <span style="color: #51afef;">self</span>.pi:
+            <span style="color: #51afef;">self</span>.pi[u, v] = do_update(u, v)
+
+        <span style="color: #51afef;">self</span>.t += <span style="color: #da8548; font-weight: bold;">1</span>
+</code></pre>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orge482acd">
+<h2 id="Multiple-Equilibria-of-Bimodal-Interactions"><span class="section-number-2">32.</span> Multiple Equilibria of Bimodal Interactions</h2>
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/grid.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</section>
+</section>
+<section>
+<section id="slide-org5592af4">
+<h2 id="Experiments-Interaction-Modality"><span class="section-number-2">33.</span> Experiments: Interaction Modality</h2>
+<br/>
+
+<div id="org6f26213" class="figure">
+<p><img src="./img/bimodal.jpg" alt="bimodal.jpg" width="100%" />
+</p>
+</div>
+
+<div class="center">
+<p>
+Probability of uniform policies <em>decreases</em>
+with feature mode separation.
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org82ea094">
+<h2 id="Experiments-Noise"><span class="section-number-2">34.</span> Experiments: Noise</h2>
+<br/>
+
+<div id="org377478b" class="figure">
+<p><img src="./img/noise.jpg" alt="noise.jpg" width="100%" />
+</p>
+</div>
+
+<div class="center">
+<p>
+Probability of uniform policies <em>increases</em>
+with observation noise.
+</p>
+</div>
+
+  </section></section><section><section><br/><br/><br/>
+<h1><center><span style="color:lightgray; margin:0em;">2. A Model for the Self-Organization <br/>of Social Roles</span></center></h1>
+<h2><ul><li style="color:lightgray; margin:0em;">The Model</li><li style="color:lightgray; margin:0em;">Simulation Results</li><li style="color:black; margin:0em;">Theoretical Results</li></ul></h2>
+</section>
+</section>
+<section>
+<section id="slide-org1f2fecf">
+<h2 id="Theoretical-Results"><span class="section-number-2">35.</span> Theoretical Results</h2>
+<ul>
+<li>Decision Boundaries
+<ul>
+<li>Symmetry under exchange \(u \leftrightarrow v\).</li>
+<li>Dynamics driven by curvature of graph \(g\).</li>
+
+</ul></li>
+
+</ul>
+<br/>
+<p>
+Loss for \(u, v\):
+</p>
+<div class="center">
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/boundaries.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2598fda">
+<h2 id="Decision-Boundaries"><span class="section-number-2">36.</span> Decision Boundaries</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+Expected action \(a(u, v)\) for true pairings:
+</p>
+
+<div id="org54841e9" class="figure">
+<p><img src="./img/0a_last.jpg" alt="0a_last.jpg" width="50%" />
+</p>
+</div>
+<br/>
+<p>
+Action flips across boundary \(f(u)\).
+</p>
+<br/>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+Approximate
+</p>
+<div>
+\begin{equation}
+  a(u, v) = \sigma\Big( \pm \frac{1}{\varepsilon} \big(
+  v - f(u)
+  \big)
+  \Big).
+\end{equation}
+
+</div>
+
+
+<div id="orgd7666eb" class="figure">
+<p><img src="./img/logistic.jpg" alt="logistic.jpg" width="100%" />
+</p>
+</div>
+<div class="center">
+<p>
+Sigmoid \(\sigma\); scale parameter \(\varepsilon > 0\).
+</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orgd89717c">
+<h2 id="Symmetry"><span class="section-number-2">37.</span> Symmetry</h2>
+<p>
+Calculus of variations with non-local Lagrangian! .
+</p>
+<div>
+\begin{equation}
+  \forall q, \quad (\delta \mathcal{L})[q]
+  =
+  \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+  g(u,v)
+    \frac{\partial
+    \ell \big( a(u, v), a(v, u) ) \big)
+    }{\partial f(u)}
+    q(u)
+    {\rm d}{v} {\rm d}{u}
+\end{equation}
+
+</div>
+<p>
+Symmetric \(\ell\), \(\varepsilon \ll 0\), ensures
+</p>
+<div>
+\begin{equation}
+  \forall u, \quad
+  g\Big(u, f(u)\Big)
+  \Big(2a\big(f(u), u\big) - 1\Big) = 0.
+\end{equation}
+
+</div>
+<p>
+This implies symmetry of \(f\):
+</p>
+<div>
+\begin{equation}
+f(f(u)) = u.
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-orga9b0128">
+<h2 id="Line-Integral-Approximation"><span class="section-number-2">38.</span> Line-Integral Approximation</h2>
+<div>
+\begin{equation} \label{eq:line-integral}
+ \mathcal{L} \approx \int_{-\infty}^{\infty} g\big(u, f(u)\big) W\big(f^{\prime}\big) {\rm d}{u},
+\end{equation}
+
+</div>
+
+
+
+<div id="orgf32c536" class="figure">
+<p><img src="./img/width.jpg" alt="width.jpg" width="100%" />
+</p>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org2aed4db">
+<h2 id="Experimental-Validation"><span class="section-number-2">39.</span> Experimental Validation</h2>
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/ring_final.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<div class="columns" style="align-items: 4;">
+<div class="column" style="flex:  1 0;">
+<p>
+Initial state
+</p>
+
+<div id="orga14a88a" class="figure">
+<p><img src="./img/ring.jpg" alt="ring.jpg" width="100%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+stable.
+</p>
+<div>
+\begin{equation}
+g \propto \dfrac{1}{r}.
+\end{equation}
+
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+contracts.
+</p>
+<div>
+\begin{equation}
+\color{red}{g \propto  \dfrac{1}{r + 2}}.
+\end{equation}
+
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<p>
+expands.
+</p>
+<div>
+\begin{equation}
+\color{blue}{g \propto \dfrac{r + 5}{r^{2}}}.
+\end{equation}
+
+</div>
+</div>
+</div>
+
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>3. Emergent Evolutionary Dynamics</center></h1>
+</section>
+</section>
+<section>
+<section id="slide-orge50d53d">
+<h2 id="Beyond-Traditional-Replicators"><span class="section-number-2">40.</span> Beyond Traditional Replicators</h2>
+<br/>
+<p>
+Competition between observable <em>behaviors</em>, for each feature pair \((u, v)\).
+</p>
+
+<div class="center">
+<p>
+\(\forall u, v, \qquad \pi=1 \quad \text{competes with} \quad \pi=0.\)
+</p>
+</div>
+
+<p>
+Model competition with replicator equation:
+</p>
+<div>
+\begin{equation}
+\dot{\rho}_{u, v}(1) = \rho_{u, v}(1) \left[\overline{\mathscr{L}}_{u, v} - \mathscr{L}_{u, v}(1)\right].
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org26aaa14">
+<h2 id="Replicator-Dynamics"><span class="section-number-2">41.</span> Replicator Dynamics</h2>
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/repl.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</section>
+</section>
+<section>
+<section id="slide-org48c2948">
+<h2 id="Replicator-Dynamics-with-Noise"><span class="section-number-2">42.</span> Replicator Dynamics with Noise</h2>
+
+<video data-autoplay width="100%" autoplay loop muted>
+  <source src="./img/repl_noised.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+</section>
+</section>
+<section>
+<section id="slide-org3532850">
+<h2 id="Reinterpreting-Multiagent-Dynamics"><span class="section-number-2">43.</span> Reinterpreting Multiagent Dynamics</h2>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<span>Evolution:</span>
+
+
+<div id="orgc01eea1" class="figure">
+<p><img src="./img/feedback.jpg" alt="feedback.jpg" width="100%" />
+</p>
+</div>
+<br/>
+<span>Learning:</span>
+
+
+<div id="org42e3173" class="figure">
+<p><img src="./img/learning.jpg" alt="learning.jpg" width="100%" />
+</p>
+</div>
+</div>
+<div class="column" style="flex:  1 0;">
+<br/>
+<br/>
+<br/>
+<p>
+Evolution <em>enabled by Multiagent Learning</em>:
+</p>
+
+<div id="org70c39a4" class="figure">
+<p><img src="./img/newfeedback.jpg" alt="newfeedback.jpg" width="100%" />
+</p>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org18ebe8c">
+<h2 id="An-Ecology-of-Multiagent-Behaviors"><span class="section-number-2">44.</span> An Ecology of Multiagent Behaviors</h2>
+<div class="center">
+<p>
+Multiagent systems are <em>platforms</em> for evolutionary dynamics.
+</p>
+</div>
+<div class="columns" style="align-items: 2;">
+<div class="column" style="flex:  1 0;">
+<p>
+Learning provides <em>mechanisms</em>.
+</p>
+<ul>
+<li>Heritability.</li>
+<li>Variation.</li>
+<li>Reproductive Advantages.</li>
+
+</ul>
+<br/>
+<br/>
+<p>
+<em>Ecology</em> of behaviors.
+</p>
+<ul>
+<li>General-sum games.</li>
+<li>Coevolving niches.</li>
+
+</ul>
+</div>
+<div class="column" style="flex:  1 0;">
+
+<div id="orgcfb83ba" class="figure">
+<p><img src="./img/tree.jpg" alt="tree.jpg" width="50%" />
+</p>
+</div>
+</div>
+</div>
+
+
+
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>4. Conclusion</center></h1>
+</section>
+</section>
+<section>
+<section id="slide-org3754001">
+<h2 id="Recapitulation"><span class="section-number-2">45.</span> Recapitulation</h2>
+<ol>
+<li><strong>Conjugate Natural Selection</strong>.
+<ul>
+<li>Evolutionary Dynamics.</li>
+<li>Learning Dynamics.</li>
+<li>Main Result.</li>
+
+</ul></li>
+<li><strong>A Model for the Self-Organization of Social Roles</strong>.
+<ul>
+<li>The Model.</li>
+<li>Simulation Results.</li>
+<li>Theoretical Results.</li>
+
+</ul></li>
+<li><strong>Emergent Evolutionary Dynamics</strong>.
+<ul>
+<li>Beyond Traditional Replicators.</li>
+<li>Reinterpreting Multiagent Dynamics.</li>
+
+</ul></li>
+
+</ol>
+</section>
+</section>
+<section>
+<section id="slide-orgc600438">
+<h2 id="Takeaways"><span class="section-number-2">46.</span> Takeaways</h2>
+<p>
+Relationship between evolution and learning.
+</p>
+<ul>
+<li>Evolution corresponds to learning at the <em>population</em> level.</li>
+<li>Its dynamics can be optimally approximated with FR-NGD.</li>
+
+</ul>
+
+<p>
+New work on emergent social roles.
+</p>
+<ul>
+<li>Spin-glass system.</li>
+<li>Emergent evolutionary dynamics.</li>
+
+</ul>
+
+<p>
+Interpretation of Multiagent Systems.
+</p>
+<ul>
+<li>Platform for co-evolving behaviors.</li>
+
+</ul>
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>Thank you.</center></h1>
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>Questions?</center></h1>
+
+  </section></section>
+<section><section>
+<br/><br/><br/>
+<h1><center>Supplementary Slides</center></h1>
+</section>
+</section>
+<section>
+<section id="slide-org12c8cdc">
+<h2 id="CNS-Preserved-Dynamics"><span class="section-number-2">47.</span> CNS: Preserved Dynamics</h2>
+<p>
+<strong>Thm 2</strong>: \(\quad\) Linear combinations of score, e.g.,
+</p>
+<div>
+\begin{equation}
+  \forall c^{i} \in {\mathbf{R}}, \mathbf{v} = c^{i} \partial_{i} \log \rho_{\boldsymbol{\theta}}(h),
+\end{equation}
+
+</div>
+<p>
+obey the Price Equation:
+</p>
+<div>
+\begin{equation}
+  \quad \frac{\rm d}{{\rm d}t} \underset{H \sim \rho}{\rm E}\Big[\mathbf{v}(H)\Big]
+  = -\underset{H\sim\rho}{\rm Cov}\Big[\mathbf{v}(H), \mathscr{L}(H)\Big] +
+  \underset{H\sim\rho}{\rm E}\Big[\dot{\mathbf{v}}(H)\Big].
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org54c9fa7">
+<h2 id="Greeting-Game-Equations"><span class="section-number-2">48.</span> Greeting Game Equations</h2>
+<p>
+First convolution. Action of \(u\) paired with\(v\).
+</p>
+<div>
+\begin{equation}
+  a(u, v) = \int_{-\infty}^{\infty}
+  \pi(u, v + \eta) K(\eta)
+  {\rm d}{\eta}.
+\end{equation}
+
+</div>
+
+<p>
+Second convolution. Treatment of \(u\) observing \(v\).
+</p>
+<div>
+\begin{equation}
+  y(u, v) = \bigg(\int_{-\infty}^{\infty}
+  a(v + \eta, u) g(u, v + \eta) K(\eta)
+  {\rm d}{\eta}\bigg)
+\bigg(\int_{-\infty}^{\infty}
+  g(u, v + \eta) K(\eta)
+  {\rm d}{\eta}\bigg)^{-1}.
+\end{equation}
+
+</div>
+
+<p>
+Loss
+</p>
+<div>
+\begin{equation}
+  \mathcal{L} \define \int_{-\infty}^{\infty} \int_{-\infty}^{\infty}
+    \tilde{g}_{K}(u, v) \ell \big[ \pi(u, v), y(v, u) \big]
+             {\rm d}{u} {\rm d}{v}.
+\qquad
+\tilde{g}_{K}(u, v) = \int_{-\infty}^{\infty}
+  g(u, v + \eta) K(\eta)
+  {\rm d}{\eta}.
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org000d363">
+<h2 id="Supplementary-Formulas"><span class="section-number-2">49.</span> Supplementary Formulas</h2>
+<p>
+Neural Tangent Kernel
+</p>
+<div>
+\begin{equation}
+  \dot{f_{\boldsymbol{\theta}}}(h) = - \sum_{k} \frac{\partial f_{\boldsymbol{\theta}}(h)}{\partial \theta^{i}} \delta^{ij}  \frac{\partial f_{\boldsymbol{\theta}}(k)}{\partial \theta^{j}} \frac{\partial \mathcal{L}}{\partial f_{\boldsymbol{\theta}}(k)}.
+\end{equation}
+
+</div>
+
+
+<p>
+Simple Harmonic Motion
+</p>
+<div>
+\begin{equation}
+\ddot{\boldsymbol{\theta}} = \dfrac{k}{m} \boldsymbol{\theta}. \qquad  \left[\dfrac{k}{m}\right] = \dfrac{1}{\mathsf{s}^{2}}.
+\end{equation}
+
+</div>
+</section>
+</section>
+<section>
+<section id="slide-org90a1a47">
+<h2 id="Additional-References"><span class="section-number-2">50.</span> Additional References</h2>
+<p>
+Daniel Friedman and Barry Sinervo. <em>Evolutionary games in natural, social, and virtual worlds</em>. Oxford University
+Press, 2016.
+</p>
+
+<p>
+Mohammad Emtiyaz Khan, and Håvard Rue. <em>The Bayesian learning rule</em>. arXiv preprint, 2021.
+</p>
+
+<p>
+Partha Mukherjee, Sandip Sen, and Stéphane Airiau. <em>Norm emergence in spatially constrained interactions</em>. Adaptive and Learning Agents Workshop at AAMAS, volume 7, 2007.
+</p>
+
+<p>
+Sandip Sen and Stéphane Airiau. <em>Emergence of norms through social learning</em>. IJCAI, volume 1507, 2007.
+</p>
+</section>
+</section>
+<section>
+<section id="slide-org0b0c3e4">
+<h2 id="Notes-to-Self"><span class="section-number-2">51.</span> Notes to Self</h2>
+<ul>
+<li><kbd>f</kbd> for full screen.</li>
+<li><kbd>s</kbd> for presenter mode.</li>
+<li><kbd>g</kbd> + <kbd>123</kbd> to jump to slide 123.</li>
+<li><kbd>esc</kbd> to zoom out/in.</li>
+<li><kbd>.</kbd>, <kbd>v</kbd>, or <kbd>/</kbd> to toggle black screen.</li>
+
+</ul>
+
+<p>
+Adjust aspect ratio: <em>In browser&rsquo;s dev console</em>, call <samp>scale</samp>:
+</p>
+<div class="org-src-container">
+
+<pre  class="src src-javascript"   ><code trim><span style="color: #5B6268;">// </span><span style="color: #5B6268;">argument is pixel height for fixed width of 1080.</span>
+scale(<span style="color: #da8548; font-weight: bold;">500</span>); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">shorter, wider screen</span>
+scale(<span style="color: #da8548; font-weight: bold;">650</span>); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">default</span>
+scale(<span style="color: #da8548; font-weight: bold;">750</span>); <span style="color: #5B6268;">// </span><span style="color: #5B6268;">taller, narrower screen</span>
+</code></pre>
+</div>
+
+<script type="text/javascript">
+function scale(width) {
+    Reveal.initialize({
+      width: 1080,
+      height: width,
+      margin: 0.04,
+      minScale: 0.2,
+      maxScale: 2.0
+    });
+}
+window.addEventListener('load', function() { scale(650); });
+</script>
+</section>
+</section>
+</div>
+</div>
+<script src="./reveal.js/dist/reveal.js"></script>
+<script src="./reveal.js/plugin/markdown/markdown.js"></script>
+<script src="./reveal.js/plugin/zoom/zoom.js"></script>
+<script src="./reveal.js/plugin/notes/notes.js"></script>
+
+
+<script>
+// Full list of configuration options available here:
+// https://github.com/hakimel/reveal.js#configuration
+Reveal.initialize({
+plugins: [RevealMarkdown, RevealZoom, RevealNotes],
+slideNumber:"c", controls: false, transition: "none"
+});
+
+</script>
+</body>
+</html>
