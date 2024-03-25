@@ -344,10 +344,14 @@ code, samp {
   color: #ccc;
 }
 pre.src {
-  font-size: 85%;
+  font-size: 80%;
   line-height: 1.2em;
 }
 
 .nopad > p{
   padding: 0px;
+}
+
+.mhl  {
+  background:  #fdc700;
 }
