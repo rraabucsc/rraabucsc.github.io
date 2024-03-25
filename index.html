@@ -13,6 +13,17 @@
 
 <link rel="stylesheet" href="./reveal.js/dist/theme/custom.css" id="theme"/>
 
+
+<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+<script>
+    if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = './reveal.js/css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+    }
+</script>
 <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
 <link rel="icon" type="image/x-icon" type="image/svg" href="/favicon.svg">
 <link rel="stylesheet" type="text/css" href="/css/lib/normalize.css">
@@ -66,12 +77,12 @@
     }
 </style>
 <section>
-<section id="slide-orgda95f24">
+<section id="slide-org0e48b01">
 <h2 id="About-Reilly"><span class="section-number-2">1.</span> About Reilly</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
 
-<div id="org3be38eb" class="figure">
+<div id="org47c3593" class="figure">
 <p><img src="./img/reilly.png" alt="reilly.png" width="50%" />
 </p>
 </div>
@@ -109,14 +120,14 @@ at UC Santa Cruz
 <li>Thesis supporting control of superconducting qubits.</li>
 
 </ul></li>
-<li>Prior work in software development.</li>
+<li>Prior work in software development (Python, others).</li>
 
 </ul>
 </td></tr></table>
 </section>
 </section>
 <section>
-<section id="slide-org9ce90d2">
+<section id="slide-org9f71e5a">
 <h2 id="Dissertation-Work"><span class="section-number-2">2.</span> Dissertation Work</h2>
 <p>
 Dynamics of multiagent systems. Bias and fairness in machine learning.
@@ -128,7 +139,7 @@ Dynamics of multiagent systems. Bias and fairness in machine learning.
 
 </ul>
 
-<div id="org44d3fb0" class="figure">
+<div id="org25c05c9" class="figure">
 <p><img src="./img/dissertationfeedback.jpg" alt="dissertationfeedback.jpg" width="75%" />
 </p>
 </div>
@@ -141,7 +152,7 @@ How can we intervene on policy to ensure &ldquo;aligned&rdquo; outcomes?
 </section>
 </section>
 <section>
-<section id="slide-org1a0bbc4">
+<section id="slide-orgd1e774b">
 <h2 id="Dissertation-Related-Publications"><span class="section-number-2">3.</span> Dissertation-Related Publications</h2>
 <aside class="notes">
 Theory, Experiment -> problematic outcomes
@@ -193,7 +204,7 @@ Met Luis at AAI.
 </section>
 </section>
 <section>
-<section id="slide-org4a726b9">
+<section id="slide-org4c4eab7">
 <h2 id="This-Talk"><span class="section-number-2">4.</span> This Talk</h2>
 <div class="center">
 <p>
@@ -222,7 +233,7 @@ A model of emergent social norms informed by features.
 </section>
 </section>
 <section>
-<section id="slide-org68de4ec">
+<section id="slide-orgb19b84a">
 <h2 id="Overview"><span class="section-number-2">5.</span> Overview</h2>
 <ol>
 <li><strong>Conjugate Natural Selection</strong>.
@@ -256,7 +267,7 @@ Theoretical Results.
 </section>
 </section>
 <section>
-<section id="slide-org14dbc6f">
+<section id="slide-org1cd650b">
 <h2 id="Related-Publications"><span class="section-number-2">6.</span> Related Publications</h2>
 <p>
 [5] <strong>Reilly Raab</strong>, Luca de Alfaro, and Yang Liu.
@@ -294,7 +305,7 @@ Theoretical Results.
 </section>
 </section>
 <section>
-<section id="slide-org2872e57">
+<section id="slide-orgbdfaeb5">
 <h2 id="Evolution-Mechanisms"><span class="section-number-2">7.</span> Evolution: Mechanisms</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -319,7 +330,7 @@ Theoretical Results.
 <br/>
 <br/>
 
-<div id="orgd57691e" class="figure">
+<div id="orga112857" class="figure">
 <p><img src="./img/feedback.jpg" alt="feedback.jpg" width="100%" />
 </p>
 </div>
@@ -338,7 +349,7 @@ Theoretical Results.
 <span>A duplicating DNA strand</span>
 
 
-<div id="orgc3654d4" class="figure">
+<div id="orgb9b9cee" class="figure">
 <p><img src="./img/dna.jpg" alt="dna.jpg" width="92%" />
 </p>
 </div>
@@ -347,7 +358,7 @@ Theoretical Results.
 </section>
 </section>
 <section>
-<section id="slide-org9014e78">
+<section id="slide-orgb491c4a">
 <h2 id="Evolution-Memes"><span class="section-number-2">8.</span> Evolution: Memes</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -372,7 +383,7 @@ Theoretical Results.
 <br/>
 <br/>
 
-<div id="org19b4623" class="figure">
+<div id="orgf10a0b9" class="figure">
 <p><img src="./img/meme.jpg" alt="meme.jpg" width="100%" />
 </p>
 </div>
@@ -382,7 +393,7 @@ Theoretical Results.
 <span>A game strategy</span>
 
 
-<div id="org2586749" class="figure">
+<div id="orgf5e1da8" class="figure">
 <p><img src="./img/gambit.jpg" alt="gambit.jpg" width="40%" />
 </p>
 </div>
@@ -390,7 +401,7 @@ Theoretical Results.
 <span>A hand-copied manuscript</span>
 
 
-<div id="org745294b" class="figure">
+<div id="org039d5f2" class="figure">
 <p><img src="./img/monk.jpg" alt="monk.jpg" width="40%" />
 </p>
 </div>
@@ -399,7 +410,7 @@ Theoretical Results.
 </section>
 </section>
 <section>
-<section id="slide-org6c606da">
+<section id="slide-orgdb01b1a">
 <h2 id="Evolution-Dynamics"><span class="section-number-2">9.</span> Evolution: Dynamics</h2>
 <div class="center">
 <p>
@@ -411,7 +422,7 @@ Evolution describes how <em>distributions</em> change.
 <span>Individuals are <em>artifacts</em> of evolution.</span>
 
 
-<div id="org2815e5d" class="figure">
+<div id="org23590fa" class="figure">
 <p><img src="./img/skeletons.jpg" alt="skeletons.jpg" width="100%" />
 </p>
 </div>
@@ -420,7 +431,7 @@ Evolution describes how <em>distributions</em> change.
 <span>Populations evolve. Niches co-evolve.</span>
 
 
-<div id="org743ed9f" class="figure">
+<div id="org63a4481" class="figure">
 <p><img src="./img/tree.jpg" alt="tree.jpg" width="45%" />
 </p>
 </div>
@@ -429,7 +440,7 @@ Evolution describes how <em>distributions</em> change.
 </section>
 </section>
 <section>
-<section id="slide-orge6faf54">
+<section id="slide-orgb45ef2d">
 <h2 id="The-Replicator-Equation"><span class="section-number-2">10.</span> The Replicator Equation</h2>
 <p>
 Consider the distribution over all possible strategies \(h\).
@@ -465,7 +476,7 @@ After re-normalization,
 </section>
 </section>
 <section>
-<section id="slide-org20a391b">
+<section id="slide-orgf0c92e7">
 <h2 id="Evolutionary-Game-Theory"><span class="section-number-2">11.</span> Evolutionary Game Theory</h2>
 <table><tr><td>
 <div class="center">
@@ -544,7 +555,7 @@ After re-normalization,
 </section>
 </section>
 <section>
-<section id="slide-org703b605">
+<section id="slide-orgd5e50c9">
 <h2 id="Bayesian-Inference-as-Natural-Selection"><span class="section-number-2">12.</span> Bayesian Inference as Natural Selection</h2>
 <p>
 Interpret \(\rho(h)\) as distribution over hypotheses \(h\), loss as <em>surprisal</em>.
@@ -595,7 +606,7 @@ Generalized by
 </section>
 </section>
 <section>
-<section id="slide-orgb75032c">
+<section id="slide-org027c64a">
 <h2 id="Learning"><span class="section-number-2">13.</span> Learning</h2>
 <div class="center">
 <p>
@@ -608,7 +619,7 @@ Minimize loss \(\mathcal{L}\) for a function \(f\) parameterized by \(\boldsymbo
 <br/>
 <br/>
 
-<div id="org64d4b7a" class="figure">
+<div id="org4fda970" class="figure">
 <p><img src="./img/learning.jpg" alt="learning.jpg" width="80%" />
 </p>
 </div>
@@ -648,7 +659,7 @@ f_{\boldsymbol{\theta}}(S) \mapsto \Pr(A).
 </section>
 </section>
 <section>
-<section id="slide-org7cdc0f3">
+<section id="slide-org256b7c6">
 <h2 id="Gradient-Descent"><span class="section-number-2">14.</span> Gradient Descent</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -672,26 +683,25 @@ Your browser does not support the video tag.
 </div>
 </div>
 <p>
-<strong>Problem:</strong>
-</p>
-
-<p>
-Dynamics vary with change of basis for \(\boldsymbol{\theta}\)!
+<strong>Problem:</strong> Vectors live in different spaces!
 </p>
 <div>
 \begin{equation}
-[\theta^{i}] = \mathsf{U}.
+[\dot{\theta}^{i}] = \frac{\mathsf{U}}{\mathsf{T}}.
 \qquad
 [\partial_{i} \mathcal{L}(\boldsymbol{\theta})] = \frac{\mathsf{L}}{\mathsf{U}}.
 \qquad
-[\eta] = \frac{\mathsf{U}^{2}}{\mathsf{L}}.
+[\eta] = \frac{\color{red}{\mathsf{U}^{2}}}{\mathsf{LT}}.
 \end{equation}
 
 </div>
+<p>
+Dynamics vary with change of basis for \(\boldsymbol{\theta}\).
+</p>
 </section>
 </section>
 <section>
-<section id="slide-org7951772">
+<section id="slide-org42c5ace">
 <h2 id="Iterative-Refinement"><span class="section-number-2">15.</span> Iterative Refinement</h2>
 <div>
 \begin{equation}
@@ -736,7 +746,7 @@ Vanilla gradient descent.
 </section>
 </section>
 <section>
-<section id="slide-orgace615e">
+<section id="slide-orgff3c7b7">
 <h2 id="Alternative-Metrics-boldsymbol-rm-D-"><span class="section-number-2">16.</span> Alternative Metrics \({\boldsymbol{\rm D}}\)</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -772,7 +782,7 @@ Momentum, Nesterov acceleration.
 </div>
 <div class="column" style="flex:  1 0;">
 
-<div id="orgac01f58" class="figure">
+<div id="org74fd666" class="figure">
 <p><img src="./img/sushi.jpg" alt="sushi.jpg" width="100%" />
 </p>
 </div>
@@ -786,7 +796,7 @@ Many flavors to choose from
 </section>
 </section>
 <section>
-<section id="slide-org50715d9">
+<section id="slide-org54ca4e7">
 <h2 id="The-Fisher-Rao-Metric"><span class="section-number-2">17.</span> The Fisher-Rao Metric</h2>
 <p>
 Parameterize probability distributions \(\rho_{\boldsymbol{\theta}}\) over \(\mathcal{H}\).
@@ -813,7 +823,7 @@ F_{ij}(\boldsymbol{\theta})
 </section>
 </section>
 <section>
-<section id="slide-orgad641d9">
+<section id="slide-orgff6b943">
 <h2 id="Natural-Gradient-Descent"><span class="section-number-2">18.</span> Natural Gradient Descent</h2>
 <div>
 \begin{equation}
@@ -874,24 +884,20 @@ Fisher-Rao natural gradient descent (FR-NGD).
 </section>
 </section>
 <section>
-<section id="slide-org455dc1f">
+<section id="slide-org7b3c233">
 <h2 id="Evolution-vs-Learning"><span class="section-number-2">19.</span> Evolution vs Learning</h2>
 <br/>
 <br/>
 <br/>
 <div class="center">
 <p>
-Evolution corresponds to learning at the <em>population</em> level.
-</p>
-
-<p>
-Its dynamics can be optimally approximated with FR-NGD.
+Evolutionary dynamics can be optimally approximated with FR-NGD.
 </p>
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org32a086c">
+<section id="slide-org50fb8b9">
 <h2 id="Main-Result"><span class="section-number-2">20.</span> Main Result</h2>
 <span><b class="mhl">Theorem 1:</b><br/><center>
 FR-NGD of <u>population loss</u> minimizes <u>Fisher divergence</u> from replicator dynamics.</center></span>
@@ -928,10 +934,10 @@ Fisher-Rao Natural Gradient Descent of \(\mathcal{L}(\boldsymbol{\theta}) = \ove
 </section>
 </section>
 <section>
-<section id="slide-org8b1f077">
+<section id="slide-orgda76f3b">
 <h2 id="Intuition-Rome-to-Chicago"><span class="section-number-2">21.</span> Intuition: Rome to Chicago</h2>
 
-<div id="org08120ef" class="figure">
+<div id="org6a193f9" class="figure">
 <p><img src="./img/earth.jpg" alt="earth.jpg" width="100%" />
 </p>
 </div>
@@ -944,7 +950,7 @@ Fisher-Rao Natural Gradient Descent of \(\mathcal{L}(\boldsymbol{\theta}) = \ove
 </section>
 </section>
 <section>
-<section id="slide-org4011f66">
+<section id="slide-org465e14d">
 <h2 id="Least-Squares-Optimality"><span class="section-number-2">22.</span> Least-Squares Optimality</h2>
 <div>
 \begin{equation}
@@ -982,7 +988,7 @@ A projection of the replicator equation:
 </section>
 </section>
 <section>
-<section id="slide-orgee362c6">
+<section id="slide-orge50c895">
 <h2 id="Modelling-Evolution-without-Genes"><span class="section-number-2">23.</span> Modelling Evolution without Genes</h2>
 <div>
 \begin{equation}
@@ -994,7 +1000,7 @@ A projection of the replicator equation:
 <table><tr><td>
 <br/>
 
-<div id="org7fa15f7" class="figure">
+<div id="org4034f79" class="figure">
 <p><img src="./img/rastrigin.jpg" alt="rastrigin.jpg" width="100%" />
 </p>
 </div>
@@ -1013,7 +1019,7 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org9581c6d">
+<section id="slide-orge1ea003">
 <h2 id="Real-World-Applications"><span class="section-number-2">24.</span> Real-World Applications</h2>
 <div style="margin-top: 0.5em;"></div>
 <div class="center">
@@ -1022,25 +1028,32 @@ Your browser does not support the video tag.
 </p>
 </div>
 <div style="margin-top: 0.5em;"></div>
-<div class="columns" style="align-items: 2;">
-<div class="column" style="flex:  1 0;">
+<div class="columns" style="align-items: 5;">
+<div class="column" style="flex: 3 1 0;">
 <p>
 <strong>Pros:</strong>
 </p>
 <ul>
+<li>No need to simulate genes!</li>
 <li>Continuous, high-dimensional \(\mathcal{H}\).</li>
 <li>Highly non-convex \(\mathscr{L}(h)\).</li>
-<li>Projection as alternative to mutation.</li>
+<li>Support of \(\rho_{\theta}\) as alternative to mutation.</li>
 <li>Analytic \(F^{\dagger}\) for exponential families.</li>
 
 </ul>
 </div>
-<div class="column" style="flex:  1 0;">
+<div class="column" style="flex: 2 1 0;">
 <p>
 <strong>Cons:</strong>
 </p>
 <ul>
-<li>\(F^{\dagger}\) is \(\mathcal{O}^{\approx 2.37}(n)\), in general.</li>
+<li><p>
+\(F^{\dagger}\) is \(\mathcal{O}^{\approx 2.37}(n)\), in general.
+</p>
+<div style="margin-top: 0.5em;"></div>
+<p>
+(Faster approximations possible).
+</p></li>
 
 </ul>
 </div>
@@ -1048,17 +1061,25 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org5f8c8d8">
+<section id="slide-orgcd0c5bb">
 <h2 id="Conceptual-Implications"><span class="section-number-2">25.</span> Conceptual Implications</h2>
 <br/>
 <br/>
 <div class="center">
 <p>
-Evolution corresponds to learning at the <em>population</em> level.
+Evolution corresponds to <em>learning</em> at the <em>population</em> level.
+</p>
+
+<p>
+(Learn \(\rho_{\theta}\) to minimize \(\overline{\mathscr{L}_{\rho_{\boldsymbol{\theta}}}}\).)
 </p>
 
 <p>
 What about populations of learning individuals?
+</p>
+
+<p>
+Are multiagent systems described by evolutionary dynamics?
 </p>
 </div>
 
@@ -1077,7 +1098,7 @@ What about populations of learning individuals?
 </section>
 </section>
 <section>
-<section id="slide-org3329bf0">
+<section id="slide-org7c30740">
 <h2 id="Social-Roles"><span class="section-number-2">26.</span> Social Roles</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -1106,7 +1127,7 @@ Norms based on <em>observable features</em>.
 </div>
 <br/>
 
-<div id="org03df4de" class="figure">
+<div id="orgd6f3285" class="figure">
 <p><img src="./img/boat.jpg" alt="boat.jpg" width="75%" />
 </p>
 </div>
@@ -1118,7 +1139,7 @@ Norms based on <em>observable features</em>.
 </div>
 <div class="column" style="flex:  1 0;">
 
-<div id="org4303143" class="figure">
+<div id="org8c391cf" class="figure">
 <p><img src="./img/drone.jpg" alt="drone.jpg" width="100%" />
 </p>
 </div>
@@ -1135,13 +1156,13 @@ Norms based on <em>observable features</em>.
 </section>
 </section>
 <section>
-<section id="slide-org97f2c50">
+<section id="slide-orgaa4b45d">
 <h2 id="A-Game"><span class="section-number-2">27.</span> A Game</h2>
 <p>
 The <em>greeting</em> game.
 </p>
 
-<div id="org6ede1a0" class="figure">
+<div id="orgb970acb" class="figure">
 <p><img src="./img/partners.jpg" alt="partners.jpg" width="100%" />
 </p>
 </div>
@@ -1150,14 +1171,14 @@ The <em>greeting</em> game.
 </section>
 </section>
 <section>
-<section id="slide-org28e3ec3">
+<section id="slide-org6d4b6f9">
 <h2 id="Repeated-Play"><span class="section-number-2">28.</span> Repeated Play</h2>
 <ul>
 <li>Real-valued features \(u, v\), additive noise \(\eta\).</li>
 
 <li>Binary actions \(\{0, 1\}\); zero-one loss.</li>
 
-<li>Interaction graph \(g(u, v)\).</li>
+<li>Interaction graph \(g(u, v) = \Pr(u, v)\).</li>
 
 </ul>
 
@@ -1167,9 +1188,9 @@ The <em>greeting</em> game.
 <div class="center">
 <ul>
 <li>Interact with others.</li>
-<li>Apply norms for learned social role.</li>
+<li>Anticipate <span class="underline">how others treat you</span>.</li>
+<li>Play the coordinating social role.</li>
 <li><em>Reinforce</em> corresponding roles for others.</li>
-<li>Youd don&rsquo;t need to know your own features.</li>
 
 </ul>
 </div>
@@ -1181,7 +1202,7 @@ The <em>greeting</em> game.
 </section>
 </section>
 <section>
-<section id="slide-org3a5a3df">
+<section id="slide-org4fc24d6">
 <h2 id="Stochastic-Annealing"><span class="section-number-2">29.</span> Stochastic Annealing</h2>
 <p>
 Define <em>increase in loss</em> for \(u\) observing \(v\) of <em>switching</em> policy:
@@ -1209,7 +1230,7 @@ S = {\rm E}\Big[\mathscr{L}_{v}(\text{opposite policy}) - \mathscr{L}_{v}(\text{
 </section>
 </section>
 <section>
-<section id="slide-orgddcb518">
+<section id="slide-org8d6cbd8">
 <h2 id="As-a-Spin-Glass-System"><span class="section-number-2">30.</span> As a Spin-Glass System</h2>
 <div class="center">
 <p>
@@ -1219,7 +1240,7 @@ Spin-glass system with <em>non-local</em> interactions.
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
 
-<div id="orgdb2ab0d" class="figure">
+<div id="org1effa61" class="figure">
 <p><img src="./img/spin-glass.jpg" alt="spin-glass.jpg" width="50%" />
 </p>
 </div>
@@ -1231,7 +1252,7 @@ Local coupling to neighbors (Ising).
 </div>
 <div class="column" style="flex:  1 0;">
 
-<div id="org791a116" class="figure">
+<div id="orga66a21c" class="figure">
 <p><img src="./img/nonlocal.jpg" alt="nonlocal.jpg" width="65%" />
 </p>
 </div>
@@ -1250,7 +1271,7 @@ Local coupling to neighbors (Ising).
 </section>
 </section>
 <section>
-<section id="slide-org7ccb567">
+<section id="slide-org80809dd">
 <h2 id="Simulation"><span class="section-number-2">31.</span> Simulation</h2>
 <br/>
 <p>
@@ -1264,9 +1285,9 @@ Local coupling to neighbors (Ising).
 \end{align}
 
 </div>
-<br/>
+<div style="margin-top: 0.5em;"></div>
 <p>
-Interpretations:
+Bimodal feature distribution
 </p>
 <ul>
 <li>Gender (feminine \(\leftrightarrow\) masculine).</li>
@@ -1274,7 +1295,7 @@ Interpretations:
 </ul>
 </td><td>
 
-<div id="orgaaeedd4" class="figure">
+<div id="org24bb1c3" class="figure">
 <p><img src="./img/v-axis.jpg" alt="v-axis.jpg" width="60%" style="margin: 0px;" />
 </p>
 </div>
@@ -1289,7 +1310,7 @@ Your browser does not support the video tag.
 </td><td>
 </td><td>
 
-<div id="org76a6f99" class="figure">
+<div id="org86d69ad" class="figure">
 <p><img src="./img/u-axis.jpg" alt="u-axis.jpg" width="60%" style="margin: 0px; margin-top: 0.75em;" />
 </p>
 </div>
@@ -1297,7 +1318,7 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org677427f">
+<section id="slide-orgc4d1237">
 <h2 id="Implementation"><span class="section-number-2">32.</span> Implementation</h2>
 <p>
 Discretize feature space \(u \in [N]\). Represent \(\pi\) as \((N \times N)\) array. Update with GPU kernel.
@@ -1322,7 +1343,7 @@ Discretize feature space \(u \in [N]\). Represent \(\pi\) as \((N \times N)\) ar
 </section>
 </section>
 <section>
-<section id="slide-orgdac611e">
+<section id="slide-org9d55225">
 <h2 id="Multiple-Equilibria-of-Bimodal-Interactions"><span class="section-number-2">33.</span> Multiple Equilibria of Bimodal Interactions</h2>
 
 <video data-autoplay width="100%" autoplay loop muted>
@@ -1332,11 +1353,11 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org9919a09">
+<section id="slide-orge7621a1">
 <h2 id="Experiments-Interaction-Modality"><span class="section-number-2">34.</span> Experiments: Interaction Modality</h2>
 <br/>
 
-<div id="orgbd810d9" class="figure">
+<div id="orgc4a674e" class="figure">
 <p><img src="./img/bimodal.jpg" alt="bimodal.jpg" width="100%" />
 </p>
 </div>
@@ -1350,11 +1371,11 @@ with feature mode separation.
 </section>
 </section>
 <section>
-<section id="slide-org4fc67a1">
+<section id="slide-orgef0766c">
 <h2 id="Experiments-Noise"><span class="section-number-2">35.</span> Experiments: Noise</h2>
 <br/>
 
-<div id="org93b37d8" class="figure">
+<div id="org2621bff" class="figure">
 <p><img src="./img/noise.jpg" alt="noise.jpg" width="100%" />
 </p>
 </div>
@@ -1372,7 +1393,7 @@ with observation noise.
 </section>
 </section>
 <section>
-<section id="slide-org40d1371">
+<section id="slide-org4bc1053">
 <h2 id="Theoretical-Results"><span class="section-number-2">36.</span> Theoretical Results</h2>
 <ul>
 <li>Decision Boundaries
@@ -1398,7 +1419,7 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org67bd893">
+<section id="slide-org5809169">
 <h2 id="Decision-Boundaries"><span class="section-number-2">37.</span> Decision Boundaries</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
@@ -1406,7 +1427,7 @@ Your browser does not support the video tag.
 Expected action \(a(u, v)\) for true pairings:
 </p>
 
-<div id="org8b3a7f9" class="figure">
+<div id="orgbf9f798" class="figure">
 <p><img src="./img/0a_last.jpg" alt="0a_last.jpg" width="50%" />
 </p>
 </div>
@@ -1431,7 +1452,7 @@ Approximate
 </div>
 
 
-<div id="org8b0a7f8" class="figure">
+<div id="org5fe0150" class="figure">
 <p><img src="./img/logistic.jpg" alt="logistic.jpg" width="100%" />
 </p>
 </div>
@@ -1445,7 +1466,7 @@ Sigmoid \(\sigma\); scale parameter \(\varepsilon > 0\).
 </section>
 </section>
 <section>
-<section id="slide-org8a4faa3">
+<section id="slide-orgc870258">
 <h2 id="Symmetry"><span class="section-number-2">38.</span> Symmetry</h2>
 <p>
 Calculus of variations with non-local Lagrangian!
@@ -1487,7 +1508,7 @@ f(f(u)) = u.
 </section>
 </section>
 <section>
-<section id="slide-org1df2639">
+<section id="slide-orgb16135c">
 <h2 id="Line-Integral-Approximation"><span class="section-number-2">39.</span> Line-Integral Approximation</h2>
 <div>
 \begin{equation} \label{eq:line-integral}
@@ -1498,14 +1519,14 @@ f(f(u)) = u.
 
 
 
-<div id="org77ac1e1" class="figure">
+<div id="org0c052ec" class="figure">
 <p><img src="./img/width.jpg" alt="width.jpg" width="100%" />
 </p>
 </div>
 </section>
 </section>
 <section>
-<section id="slide-org9360ac2">
+<section id="slide-orgfdbc219">
 <h2 id="Experimental-Validation"><span class="section-number-2">40.</span> Experimental Validation</h2>
 
 <video data-autoplay width="100%" autoplay loop muted>
@@ -1519,7 +1540,7 @@ Your browser does not support the video tag.
 Initial state
 </p>
 
-<div id="org893485d" class="figure">
+<div id="org601185b" class="figure">
 <p><img src="./img/ring.jpg" alt="ring.jpg" width="100%" />
 </p>
 </div>
@@ -1567,7 +1588,7 @@ g \propto \dfrac{1}{r}.
 </section>
 </section>
 <section>
-<section id="slide-org47ad0ff">
+<section id="slide-orgc734521">
 <h2 id="Beyond-Traditional-Replicators"><span class="section-number-2">41.</span> Beyond Traditional Replicators</h2>
 <br/>
 <p>
@@ -1592,7 +1613,7 @@ Model competition with replicator equation:
 </section>
 </section>
 <section>
-<section id="slide-org50491d0">
+<section id="slide-org5fbc250">
 <h2 id="Replicator-Dynamics"><span class="section-number-2">42.</span> Replicator Dynamics</h2>
 
 <video data-autoplay width="100%" autoplay loop muted>
@@ -1602,7 +1623,7 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org84fab2f">
+<section id="slide-org9033621">
 <h2 id="Replicator-Dynamics-with-Noise"><span class="section-number-2">43.</span> Replicator Dynamics with Noise</h2>
 
 <video data-autoplay width="100%" autoplay loop muted>
@@ -1612,14 +1633,14 @@ Your browser does not support the video tag.
 </section>
 </section>
 <section>
-<section id="slide-org8601020">
+<section id="slide-org1e506f3">
 <h2 id="Reinterpreting-Multiagent-Dynamics"><span class="section-number-2">44.</span> Reinterpreting Multiagent Dynamics</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
 <span>Evolution:</span>
 
 
-<div id="orgc40bf33" class="figure">
+<div id="orgfece7e4" class="figure">
 <p><img src="./img/feedback.jpg" alt="feedback.jpg" width="80%" />
 </p>
 </div>
@@ -1627,7 +1648,7 @@ Your browser does not support the video tag.
 <span>Learning:</span>
 
 
-<div id="org3e8d1e1" class="figure">
+<div id="org6808d97" class="figure">
 <p><img src="./img/learning.jpg" alt="learning.jpg" width="80%" />
 </p>
 </div>
@@ -1639,7 +1660,7 @@ Evolution <em>enabled by multiagent learning</em>:
 </p>
 <br/>
 
-<div id="org28ab504" class="figure">
+<div id="orgcb700b8" class="figure">
 <p><img src="./img/newfeedback.jpg" alt="newfeedback.jpg" width="70%" style="outline: solid; outline-offset: 10px; outline-color: green;" />
 </p>
 </div>
@@ -1654,7 +1675,7 @@ Evolution <em>enabled by multiagent learning</em>:
 </section>
 </section>
 <section>
-<section id="slide-org342f4d9">
+<section id="slide-org4d19a7c">
 <h2 id="An-Ecology-of-Multiagent-Behaviors"><span class="section-number-2">45.</span> An Ecology of Multiagent Behaviors</h2>
 <div class="center">
 <p>
@@ -1685,7 +1706,7 @@ Learning provides <em>mechanisms</em>.
 </div>
 <div class="column" style="flex:  1 0;">
 
-<div id="orgd35bea4" class="figure">
+<div id="orgdb47a0c" class="figure">
 <p><img src="./img/tree.jpg" alt="tree.jpg" width="50%" />
 </p>
 </div>
@@ -1702,7 +1723,7 @@ Learning provides <em>mechanisms</em>.
 </section>
 </section>
 <section>
-<section id="slide-orgc3a7dbf">
+<section id="slide-orge09865d">
 <h2 id="Recapitulation"><span class="section-number-2">46.</span> Recapitulation</h2>
 <ol>
 <li><strong>Conjugate Natural Selection</strong>.
@@ -1736,7 +1757,7 @@ Theoretical Results.
 </section>
 </section>
 <section>
-<section id="slide-org0625c1b">
+<section id="slide-org686b525">
 <h2 id="Takeaways"><span class="section-number-2">47.</span> Takeaways</h2>
 <ol>
 <li>Relationship between evolution and learning.
@@ -1782,7 +1803,7 @@ Emergent evolutionary dynamics.
 </section>
 </section>
 <section>
-<section id="slide-org78a5f87">
+<section id="slide-orgd9a6b46">
 <h2 id="CNS-Preserved-Dynamics"><span class="section-number-2">48.</span> CNS: Preserved Dynamics</h2>
 <p>
 <strong>Thm 2</strong>: \(\quad\) Linear combinations of score, e.g.,
@@ -1807,7 +1828,7 @@ obey the Price Equation:
 </section>
 </section>
 <section>
-<section id="slide-org2251115">
+<section id="slide-orgde86140">
 <h2 id="Greeting-Game-Equations"><span class="section-number-2">49.</span> Greeting Game Equations</h2>
 <p>
 First convolution. Action of \(u\) paired with\(v\).
@@ -1854,7 +1875,7 @@ Loss
 </section>
 </section>
 <section>
-<section id="slide-org9a75d15">
+<section id="slide-orge12785b">
 <h2 id="Supplementary-Formulas"><span class="section-number-2">50.</span> Supplementary Formulas</h2>
 <p>
 Neural Tangent Kernel
@@ -1879,7 +1900,7 @@ Simple Harmonic Motion
 </section>
 </section>
 <section>
-<section id="slide-org1792e65">
+<section id="slide-orgaedb296">
 <h2 id="Additional-References"><span class="section-number-2">51.</span> Additional References</h2>
 <p>
 Daniel Friedman and Barry Sinervo. <em>Evolutionary games in natural, social, and virtual worlds</em>. Oxford University
@@ -1900,7 +1921,7 @@ Sandip Sen and Stéphane Airiau. <em>Emergence of norms through social learning<
 </section>
 </section>
 <section>
-<section id="slide-org1b29a58">
+<section id="slide-orgb2d0992">
 <h2 id="Notes-to-Self"><span class="section-number-2">52.</span> Notes to Self</h2>
 <div class="columns" style="align-items: 2;">
 <div class="column" style="flex:  1 0;">
