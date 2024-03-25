@@ -9,12 +9,12 @@
 
   \draw[very thin,color=gray] (0,0) grid (1,.5);
 
-  \draw[->, very thick] (0,0) -- (0,0.5) node[anchor=north east, outer sep=0.1in] {$g$};
+  \draw[->, very thick] (0,0) -- (0,0.5) node[anchor=north east, outer sep=0.1in] {$\mathcal{L}$};
   \draw[->, very thick] (0,0) -- (1,0) node[anchor=north east, outer sep=0.1in] {$r$};
 
-  \draw[thick, black]    plot (\x,{0.7/abs(10 * \x)});% node[anchor=west, outer sep=0.1in]{stable};
-  \draw[thick, red]    plot (\x,{0.7/(abs(10 * \x) + 5)});% node[anchor=north west, outer sep=0.1in]{contracts};
-  \draw[thick, blue]    plot (\x,{0.7 * (10 * \x + 5)/(100 * \x * \x + 1)});% node[anchor=south west, outer sep=0.1in]{expands};
+  \draw[thick, gray]    plot (\x,{0.1});% node[anchor=west, outer sep=0.1in]{stable};
+  \draw[thick, red]    plot (\x,{(10 * \x) * 0.1/(abs(10 * \x) + 5)});% node[anchor=north west, outer sep=0.1in]{contracts};
+  \draw[thick, blue]    plot (\x,{0.1 * (10 * \x + 5)/(10 * \x + 0.1)});% node[anchor=south west, outer sep=0.1in]{expands};
 
   \draw[very thick, black] (0, 0) -- (0, -0.05) node[anchor=north, outer sep=0.05in] {$0$};
 
